@@ -12,7 +12,7 @@ end
 
 # Check if tmux session exists
 def check_session(name)
-  tmux_command("tmux has-session -t #{name} 2>/dev/null")
+  tmux_command("tmux has-session -t='#{name}' 2>/dev/null")
 end
 
 # Create a new tmux session
@@ -22,17 +22,17 @@ end
 
 # Split a pane vertically
 def split_pane(session_name, dir_path)
-  tmux_command("tmux split-window -v -t #{session_name}:0 -c #{dir_path}")
+  tmux_command("tmux split-window -v -t=#{session_name}:0 -c #{dir_path}")
 end
 
 # Send a command to a specific pane
 def send_keys(session_name, pane, command)
-  tmux_command("tmux send-keys -t #{session_name}:0.#{pane} '#{command}' C-m")
+  tmux_command("tmux send-keys -t=#{session_name}:0.#{pane} '#{command}' C-m")
 end
 
 # Detach from the current session and reattach to the new session
 def reattach_to_session(name)
-  tmux_command("tmux switch-client -t #{name}")
+  tmux_command("tmux switch-client -t='#{name}'")
 end
 
 # Extract the session name from the directory path
