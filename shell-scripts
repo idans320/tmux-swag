@@ -1,0 +1,7 @@
+#!/bin/bash
+## File: tmux-session-menu.sh
+#
+SESSION=$(tmux list-sessions -F "#{session_name}" | fzf --tmux --reverse)
+if [ -n "$SESSION" ]; then
+    tmux switch-client -t "$SESSION"
+fi
